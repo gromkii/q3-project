@@ -40,5 +40,10 @@
     "ember-resolver": "^2.0.3",
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1"
+  },
+  "dependencies": {
+    "bookshelf": "^0.10.0",
+    "knex": "^0.11.9",
+    "pg": "^6.0.3"
   }
 }
