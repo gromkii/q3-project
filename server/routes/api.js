@@ -1,18 +1,107 @@
 const express = require('express'),
-  router = express.Router();
+  router = express.Router(),
+  bcrypt = require('bcrypt'),
+  User = require('../models/user'),
+  Listing = require('../models/listing'),
+  message = require('../models/message');
 
 /*
 Returns a list of all users.
  */
 
 router.route('/users')
+  // Get all users.
   .get((req, res) => {
-    res.json({
-      username:'Dax',
-      password:'a pass',
-      avatar_url:'http://placecage.com/200/200',
-      location:'Austin,TX'
-    });
+    User
+      .fetchAll()
+      .then( users => {
+        res.json(users.toJSON());
+      })
   })
+
+  //Add a new user.
+  .post((req, res) => {
+    new User({
+      // Object shit.
+    }).save()
+      .then( user => {
+        // Return new user id.
+      })
+  });
+
+router.route('/users/:user_id')
+  // Return a specific user.
+  .get((req, res) => {
+    User
+      .where('id',req.params.user_id)
+      .fetch()
+      .then( user => {
+        res.json(user.toJSON());
+      })
+  });
+
+router.route('/listings')
+  //Return all listings.
+  .get((req, res) => {
+    Listing
+      .fetchAll()
+      .then( listings => {
+        res.json(listings.toJSON());
+      })
+  })
+
+  //Post new listing.
+  new Listing({
+    //Object shit.
+  }).save()
+    .then( listing => {
+      // Return new listing id.
+      res.json(listing.toJSON())
+    });
+
+rotuer.route('/listings/:item_id')
+  // Get specific liting by id.
+  .get((req, res) => {
+    Listing
+      .where('id', req.params.item_id)
+      .fetch()
+      .then( listing => {
+        res.json(listing.toJSON());
+      })
+  })
+
+  //Put route to edit.
+
+rotuer.route('/messages')
+  .get((req, res) => {
+    Message
+      .fetchAll()
+      .then( messages => {
+        res.json(messages.toJSON());
+      })
+  })
+  .post((req, res) => {
+    new Message({
+      //Object.
+    }).save()
+      .then( message => {
+        res.json(message.toJSON());
+      })
+  });
+
+router.route('/messages/:message_id')
+  //Get message by id.
+  .get((req, res) => {
+    Message
+      .where('id', req.params.message_id)
+      .fetch()
+      .then( message => {
+        res.json(message.toJSON());
+      })
+  })
+
+  //Put
+
+  //Delete
 
 module.exports = router;
