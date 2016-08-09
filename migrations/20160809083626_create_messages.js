@@ -12,11 +12,11 @@ exports.up = function(knex, Promise) {
       .onDelete('cascade'),
     table.string('message_title'),
     table.text('message_body'),
-    table.boolean('hidden').defaultTo('false');
+    table.boolean('hidden').defaultTo('false'),
     table.timestamps()
   })
 };
 
 exports.down = function(knex, Promise) {
-
+  return knex.schema.dropTable('messages');
 };
