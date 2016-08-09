@@ -3,7 +3,7 @@ const express = require('express'),
   bcrypt = require('bcrypt'),
   User = require('../models/user'),
   Listing = require('../models/listing'),
-  message = require('../models/message');
+  Message = require('../models/message');
 
 /*
 Returns a list of all users.
