@@ -51,15 +51,16 @@ router.route('/listings')
   })
 
   //Post new listing.
-  new Listing({
-    //Object shit.
-  }).save()
-    .then( listing => {
-      // Return new listing id.
-      res.json(listing.toJSON())
-    });
+  .post((req, res) => {
+    new Listing({
+      //Listings
+    }).save()
+      .then( listing => {
+        res.json(listing.toJSON());
+      })
+  })
 
-rotuer.route('/listings/:item_id')
+router.route('/listings/:item_id')
   // Get specific liting by id.
   .get((req, res) => {
     Listing
@@ -72,7 +73,7 @@ rotuer.route('/listings/:item_id')
 
   //Put route to edit.
 
-rotuer.route('/messages')
+router.route('/messages')
   .get((req, res) => {
     Message
       .fetchAll()

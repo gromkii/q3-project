@@ -3,7 +3,7 @@ var bookshelf = require('../db/bookshelf');
 require('./listing');
 require('./message');
 
-var User = bookshelf.model.extend({
+var User = bookshelf.Model.extend({
   tableName:'users',
   listing: function(){
     return this.hasMany('Listing');

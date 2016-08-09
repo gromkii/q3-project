@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('item_name'),
     table.text('item_desc'),
     table.float('price'),
+    table.text('img_url'),
     table.timestamps()
   });
 };
